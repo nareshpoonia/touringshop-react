@@ -1,0 +1,39 @@
+.products-section {
+  padding-top: 6rem;
+  color: var(--primary-color);
+}
+
+.sidebar {
+  min-width: 30rem;
+}
+
+.img-size {
+  width: 100%;
+  min-width: 22rem;
+  height: 17vw;
+  object-fit: cover;
+}
+
+.c-navbar {
+  z-index: 1;
+}
+
+.fa-heart:hover {
+  color: var(--wishlist-color);
+}
+
+.fa-cart-plus:hover {
+  border-radius: 50%;
+}
+
+.clear-all-btn {
+  color: var(--clear-filter);
+}
+
+.sort {
+  margin-top: 6rem;
+}
+
+.ratings-slider {
+  width: 100%;
+}

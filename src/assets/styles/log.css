@@ -1,0 +1,19 @@
+@import url(/styles/index.css);
+
+.hide-password {
+  position: absolute;
+  top: 58%;
+  right: 20%;
+}
+
+.hide-password-2 {
+  position: absolute;
+  top: 60.5%;
+  right: 23%;
+}
+
+.hide-password-3 {
+  position: absolute;
+  top: 66.5%;
+  right: 23%;
+}
