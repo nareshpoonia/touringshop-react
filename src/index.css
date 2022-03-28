@@ -1,13 +1,32 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css);
+@import url(/src/assets/styles/utility-new.css);
+
+:root {
+  --wishlist-color: #ff0000;
+  --clear-filter: #0000ff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.hero-image {
+  width: 100vw;
+  height: 80rem;
+}
+
+.c-navbar {
+  position: fixed;
+}
+
+.avatar {
+  margin-right: 5rem;
+  width: 40rem;
+  height: 40rem;
+}
+
+.category {
+  position: relative;
+  right: -14rem;
+}
+
+.landing-section a {
+  text-decoration: none;
+  color: var(--primary-color);
 }
