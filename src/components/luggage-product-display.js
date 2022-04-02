@@ -6,6 +6,9 @@ import { useState } from "react";
 function LuggageProductDisplay() {
   const [products, setProducts] = useState([]);
 
+  const dataArray = products;
+  console.log(dataArray);
+
   async function getProducts() {
     try {
       const response = await axios.get("/api/products");
@@ -18,6 +21,7 @@ function LuggageProductDisplay() {
   useEffect(() => {
     getProducts();
   }, []);
+
   return (
     <main className="products-display grow mt-16">
       <div className="flex-wrap flex">

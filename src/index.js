@@ -2,11 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import Luggage from "./pages/luggage";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 
 import { CartContext } from "./context/cart-context.js";
+
+import { CartProvider } from "./context/cart-context";
+import { ProductContextProvider } from "./context/products-context";
 
 // Call make Server
 makeServer();
@@ -14,9 +16,11 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <CartContext.Provider value={{ items: 5 }}>
-        <App />
-      </CartContext.Provider>
+      <ProductContextProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </ProductContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
