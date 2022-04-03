@@ -1,6 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useCartContext } from "../context/cart-context";
+
 function Nav() {
+  const { cartState, cartDispatch } = useCartContext();
+  const totalQuantities = cartState.cartArray.reduce(
+    (acc, curr) => curr.quantity + acc,
+    0
+  );
+
   return (
     <nav className="c-navbar flex-center justify-between px-4">
       <Link to="/">
@@ -16,10 +25,15 @@ function Nav() {
         </li>
         <li className="nav-item fs-7 mx-8">
           <Link to="/wishlist">
-            <i className="far fa-heart fa-xl mr-4"></i>
+            <i className="far fa-heart fa-xl mx-8 "></i>
           </Link>
           <Link to="/cart">
             <i className="fas fa-cart-plus"></i>
+            {totalQuantities > 0 ? (
+              <span className="icon-badge flex-center mx-8 my-4 ">
+                {totalQuantities}
+              </span>
+            ) : null}
           </Link>
         </li>
       </ul>

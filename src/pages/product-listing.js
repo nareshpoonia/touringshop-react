@@ -1,15 +1,10 @@
 import React from "react";
-import { useContext } from "react";
-import { CartContext } from "../context/cart-context";
-import { reducerFn } from "../utilities/reducerFn";
-
 import axios from "axios";
 import { useEffect } from "react";
-
-import LuggageProductDisplay from "../components/luggage-product-display";
 import FilterSection from "../components/filter-section";
-
 import { useProductContext } from "../context/products-context";
+import { useState } from "react";
+import Product from "../components/product";
 
 function ProductListing() {
   const { state, dispatch } = useProductContext();
@@ -86,40 +81,7 @@ function ProductListing() {
             <main className="products-display grow mt-16">
               <div className="flex-wrap flex">
                 {productsToBeShown.map((product) => {
-                  return (
-                    <figure>
-                      <div className="card-container m-8">
-                        <img
-                          className="img-size"
-                          src={product.image}
-                          alt="Sample"
-                        />
-                        <div className="card-text-container">
-                          {" "}
-                          <div className="mb-2 fw-6 fs-6">{product.title}</div>
-                          <div className="card-badge">{product.condition}</div>
-                          <div className="mb-2 fw-5 fs-6">{product.brand}</div>
-                          <div>
-                            <span className="fs-6 fw-5 mb-2">
-                              {product.price}
-                            </span>
-                          </div>
-                          <div className="card-footer flex-align-center mr-1">
-                            <button className="btn-icon btn-link">
-                              <i className="fas fa-cart-plus heart"></i>
-                              <span> Add to Cart </span>
-                            </button>
-                            <i className="far fa-heart fa-2xl"></i>
-                            <i className="fas fa-share-alt fa-2xl"></i>
-                            <span className="fs-8">
-                              {product.rating}
-                              <i className="fa-solid fa-star"></i>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </figure>
-                  );
+                  return <Product key={product._id} product={product} />;
                 })}
               </div>
             </main>

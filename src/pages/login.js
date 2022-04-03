@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext } from "react";
-import { CartContext } from "../context/cart-context";
+import { useCartContext } from "../context/cart-context";
 import { Link } from "react-router-dom";
 
 function Login() {
-  const { items } = useContext(CartContext);
+  const { state, dispatch } = useCartContext();
 
   return (
     <div>

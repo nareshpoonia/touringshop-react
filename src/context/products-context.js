@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { useContext } from "react";
 import { useReducer } from "react";
-import { reducerFn } from "../utilities/reducerFn";
+import { reducerFn } from "../reducer/reducerFn";
 
 const ProductContext = createContext(null);
 
