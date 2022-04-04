@@ -5,8 +5,6 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 
-import { CartContext } from "./context/cart-context.js";
-
 import { CartProvider } from "./context/cart-context";
 import { ProductContextProvider } from "./context/products-context";
 

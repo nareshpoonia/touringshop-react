@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useProductContext } from "../context/products-context";
@@ -9,7 +8,6 @@ function FilterSection() {
   async function getProducts() {
     try {
       const response = await axios.get("/api/products");
-      console.log(response.data.products);
       dispatch({
         type: "PRODUCTS",
         payload: response.data.products,
@@ -26,7 +24,6 @@ function FilterSection() {
   const sortProducts = (state, products) => {
     switch (state.sortBy) {
       case "LOW_TO_HIGH":
-        console.log("This is running");
         return [...products].sort((a, b) => a.price - b.price);
       case "HIGH_TO_LOW":
         return [...products].sort((a, b) => b.price - a.price);

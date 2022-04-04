@@ -1,10 +1,8 @@
 export const reducerFn = (state, action) => {
   switch (action.type) {
     case "LOW_TO_HIGH":
-      console.log("running low to high");
       return { ...state, sortBy: action.payload };
     case "HIGH_TO_LOW":
-      console.log("running high to low");
       return { ...state, sortBy: action.payload };
     case "PRODUCTS":
       return { ...state, products: action.payload };

@@ -1,6 +1,4 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useCartContext } from "../context/cart-context";
 
 function Nav() {

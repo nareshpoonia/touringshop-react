@@ -1,11 +1,6 @@
-import React from "react";
-import { useContext } from "react";
-import { useCartContext } from "../context/cart-context";
 import { Link } from "react-router-dom";
 
 function Login() {
-  const { state, dispatch } = useCartContext();
-
   return (
     <div>
       <div className="pt-8 flex">

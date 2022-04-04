@@ -1,5 +1,3 @@
-import React from "react";
-import { useState } from "react";
 import Cartproducts from "../components/cart-products";
 import { useCartContext } from "../context/cart-context";
 
@@ -21,31 +19,24 @@ function Cart() {
           return <Cartproducts key={product._id} product={product} />;
         })}
         <main className="products-display grow">
-          <figure>
-            <div className="card-container mt-32">
-              <div className="card-text-container">
-                <div className="mb-4 fw-6 fs-6">Price Detail</div>
-                <div className="mb-4 fw-6 fs-6">Quantity {totalQuantities}</div>
-                <div className="mb-2 fw-6 fs-6">Total Price {totalPrice}</div>
-                <div>
-                  <input
-                    className="my-8"
-                    type="checkbox"
-                    id="gift"
-                    name="gift"
-                  />
-                  <label className="fs-6" htmlFor="gift">
-                    This order contains a gift
-                  </label>
-                </div>
-                <div className="card-footer flex-align-center mr-1">
-                  <button className="btn-icon btn-link mb-8">
-                    <span> Proceed to Buy </span>
-                  </button>
-                </div>
+          <div className="card-container mt-32">
+            <div className="card-text-container">
+              <div className="mb-4 fw-6 fs-6">Price Detail</div>
+              <div className="mb-4 fw-6 fs-6">Quantity {totalQuantities}</div>
+              <div className="mb-2 fw-6 fs-6">Total Price {totalPrice}</div>
+              <div>
+                <input className="my-8" type="checkbox" id="gift" name="gift" />
+                <label className="fs-6" htmlFor="gift">
+                  This order contains a gift
+                </label>
+              </div>
+              <div className="card-footer flex-align-center mr-1">
+                <button className="btn-icon btn-link mb-8">
+                  <span> Proceed to Buy </span>
+                </button>
               </div>
             </div>
-          </figure>
+          </div>
         </main>
       </div>
     </div>
