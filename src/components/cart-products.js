@@ -57,7 +57,15 @@ function Cartproducts(props) {
                 >
                   <span> Remove from Cart </span>
                 </button>
-                <button className="btn-icon btn-link">
+                <button
+                  onClick={() =>
+                    cartDispatch({
+                      type: "MOVE_TO_WISHLIST",
+                      payload: props.product,
+                    })
+                  }
+                  className="btn-icon btn-link"
+                >
                   <span> Move to Wishlist </span>
                 </button>
               </div>

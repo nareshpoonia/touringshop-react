@@ -6,6 +6,7 @@ import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 
 import { CartProvider } from "./context/cart-context";
+import { WishlistProvider } from "./context/wishlist-context";
 import { ProductContextProvider } from "./context/products-context";
 
 // Call make Server
@@ -16,7 +17,9 @@ ReactDOM.render(
     <BrowserRouter>
       <ProductContextProvider>
         <CartProvider>
-          <App />
+          <WishlistProvider>
+            <App />
+          </WishlistProvider>
         </CartProvider>
       </ProductContextProvider>
     </BrowserRouter>

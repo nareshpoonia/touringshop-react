@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../context/cart-context";
+import { useWishlistContext } from "../context/wishlist-context";
 
 function Product(props) {
   const { cartState, cartDispatch } = useCartContext();
+
   const { image, title, condition, brand, price, rating, _id } = props.product;
 
   const navigate = useNavigate();
+
   return (
     <div className="card-container m-8">
       <img className="img-size" src={image} alt="Sample" />
@@ -42,7 +45,29 @@ function Product(props) {
               <span>View Cart</span>
             </button>
           )}
-          <i className="far fa-heart fa-2xl"></i>
+          {!cartState.wishlistArray.find((item) => item._id === _id) ? (
+            <button
+              onClick={() =>
+                cartDispatch({
+                  type: "ADD_TO_WISHLIST",
+                  payload: props.product,
+                })
+              }
+            >
+              <i className="far fa-heart fa-2xl"></i>
+            </button>
+          ) : (
+            <button
+              onClick={() =>
+                cartDispatch({
+                  type: "ALREADY_IN_WISHLIST",
+                  payload: props.product,
+                })
+              }
+            >
+              <i className="fa-solid fa-heart fa-2xl"></i>{" "}
+            </button>
+          )}
           <i className="fas fa-share-alt fa-2xl"></i>
           <span className="fs-8">
             {rating}
