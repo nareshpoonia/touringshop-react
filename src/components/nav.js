@@ -4,7 +4,6 @@ import { useCartContext } from "../context/cart-context";
 function Nav() {
   const { cartState, cartDispatch } = useCartContext();
   const wishlistQuantities = cartState.wishlistArray.length;
-  console.log(cartState);
   const totalQuantities = cartState.cartArray.reduce(
     (acc, curr) => curr.quantity + acc,
     0

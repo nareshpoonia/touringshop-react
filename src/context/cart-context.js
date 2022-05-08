@@ -13,8 +13,6 @@ const CartProvider = ({ children }) => {
     wishlistArray: [],
   });
 
-  console.log(cartState);
-
   return (
     <CartContext.Provider
       value={{

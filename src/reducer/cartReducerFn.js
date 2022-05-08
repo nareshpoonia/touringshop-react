@@ -1,6 +1,4 @@
 export const cartReducerFn = (state, action) => {
-  console.log(state);
-  console.log(action.payload);
   switch (action.type) {
     case "ADD_TO_CART":
       return {
@@ -14,10 +12,6 @@ export const cartReducerFn = (state, action) => {
           ...state.wishlistArray,
           { ...action.payload, wishlistQuantity: 1 },
         ],
-      };
-    case "ALREADY_IN_WISHLIST":
-      return {
-        ...state,
       };
     case "INCREMENT":
       return {
@@ -73,10 +67,8 @@ export const cartReducerFn = (state, action) => {
       };
     case "MOVE_TO_WISHLIST":
       let newWishlistArray = state.wishlistArray;
-      console.log(newWishlistArray);
       if (state.wishlistArray.length === 0) {
         newWishlistArray = [{ ...action.payload }];
-        console.log(newWishlistArray);
       } else {
         if (
           state.wishlistArray.find((item) => item._id == action.payload._id)
