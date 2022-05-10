@@ -3,7 +3,6 @@ import { useCartContext } from "../context/cart-context";
 export function WishlistProducts(props) {
   const { title, brand, price } = props.wishlist;
   const { cartState, cartDispatch } = useCartContext();
-  console.log(props.wishlist);
 
   return (
     <div className="flex-wrap flex">

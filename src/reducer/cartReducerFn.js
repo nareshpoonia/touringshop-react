@@ -1,7 +1,6 @@
 export const cartReducerFn = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
-      console.log(state);
       return {
         ...state,
         cartArray: [...state.cartArray, { ...action.payload, quantity: 1 }],
@@ -67,7 +66,6 @@ export const cartReducerFn = (state, action) => {
         } else {
           newCartArray = state.cartArray.push(action.payload);
         }
-        console.log(newCartArray);
       }
 
       return {
@@ -78,7 +76,6 @@ export const cartReducerFn = (state, action) => {
         ),
       };
     case "MOVE_TO_WISHLIST":
-      console.log(state);
       let newWishlistArray = state.wishlistArray;
       if (state.wishlistArray.length === 0) {
         newWishlistArray = [{ ...action.payload }];
