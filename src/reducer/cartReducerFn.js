@@ -13,6 +13,10 @@ export const cartReducerFn = (state, action) => {
           { ...action.payload, wishlistQuantity: 1 },
         ],
       };
+    case "ALREADY_IN_WISHLIST":
+      return {
+        ...state,
+      };
     case "INCREMENT":
       return {
         ...state,
@@ -75,7 +79,7 @@ export const cartReducerFn = (state, action) => {
         ) {
           newWishlistArray = state.wishlistArray;
         } else {
-          newCartArray = state.wishlistArray.push(action.payload);
+          newWishlistArray.push(action.payload);
         }
       }
       return {

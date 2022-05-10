@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../context/cart-context";
-import { useWishlistContext } from "../context/wishlist-context";
 
 function Product(props) {
   const { cartState, cartDispatch } = useCartContext();
@@ -45,7 +44,7 @@ function Product(props) {
               <span>View Cart</span>
             </button>
           )}
-          {!cartState.wishlistArray.find((item) => item._id === _id) ? (
+          {!cartState.wishlistArray.some((item) => item._id === _id) ? (
             <button
               onClick={() =>
                 cartDispatch({

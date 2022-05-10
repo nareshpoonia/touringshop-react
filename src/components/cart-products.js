@@ -55,7 +55,7 @@ function Cartproducts(props) {
                   }
                   className="btn-icon btn-link"
                 >
-                  <span> Remove from Cart </span>
+                  Remove from Cart
                 </button>
                 <button
                   onClick={() =>
@@ -66,7 +66,7 @@ function Cartproducts(props) {
                   }
                   className="btn-icon btn-link"
                 >
-                  <span> Move to Wishlist </span>
+                  Move to Wishlist
                 </button>
               </div>
             </div>

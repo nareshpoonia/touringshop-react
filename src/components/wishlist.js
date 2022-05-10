@@ -25,11 +25,9 @@ export function WishlistProducts(props) {
               }
               className="btn-icon btn-link"
             >
-              <span> Move to Cart </span>
+              Move to Cart
             </button>
-            <button className="btn-icon btn-link">
-              <span>Remove from Wishlist </span>
-            </button>
+            <button className="btn-icon btn-link">Remove from Wishlist</button>
           </div>
         </div>
       </div>

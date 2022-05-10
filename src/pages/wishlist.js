@@ -1,5 +1,4 @@
 import { WishlistProducts } from "../components/wishlist";
-import { useWishlistContext } from "../context/wishlist-context";
 import { useCartContext } from "../context/cart-context";
 
 function Wishlist() {
