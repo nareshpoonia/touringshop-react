@@ -30,3 +30,7 @@
   text-decoration: none;
   color: var(--primary-color);
 }
+
+.new-badge {
+  position: relative;
+}

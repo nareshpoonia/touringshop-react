@@ -3,6 +3,7 @@ import { useCartContext } from "../context/cart-context";
 
 function Nav() {
   const { cartState, cartDispatch } = useCartContext();
+  const wishlistQuantities = cartState.wishlistArray.length;
   const totalQuantities = cartState.cartArray.reduce(
     (acc, curr) => curr.quantity + acc,
     0
@@ -23,15 +24,26 @@ function Nav() {
         </li>
         <li className="nav-item fs-7 mx-8">
           <Link to="/wishlist">
-            <i className="far fa-heart fa-xl mx-8 "></i>
+            <div className="new-badge">
+              <i className="far fa-heart fa-xl px-4  "></i>
+              {wishlistQuantities > 0 ? (
+                <span className="icon-badge flex-center">
+                  {wishlistQuantities}
+                </span>
+              ) : null}
+            </div>
           </Link>
+        </li>
+        <li>
           <Link to="/cart">
-            <i className="fas fa-cart-plus"></i>
-            {totalQuantities > 0 ? (
-              <span className="icon-badge flex-center mx-8 my-4 ">
-                {totalQuantities}
-              </span>
-            ) : null}
+            <div className="new-badge">
+              <i className="fas fa-cart-plus fa-2x ml-8 mx-4"></i>
+              {totalQuantities > 0 ? (
+                <span className="icon-badge flex-center">
+                  {totalQuantities}
+                </span>
+              ) : null}
+            </div>
           </Link>
         </li>
       </ul>
