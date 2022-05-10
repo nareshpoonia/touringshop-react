@@ -3,6 +3,7 @@ import { useCartContext } from "../context/cart-context";
 export function WishlistProducts(props) {
   const { title, brand, price } = props.wishlist;
   const { cartState, cartDispatch } = useCartContext();
+  console.log(props.wishlist);
 
   return (
     <div className="flex-wrap flex">
@@ -27,7 +28,17 @@ export function WishlistProducts(props) {
             >
               Move to Cart
             </button>
-            <button className="btn-icon btn-link">Remove from Wishlist</button>
+            <button
+              onClick={() =>
+                cartDispatch({
+                  type: "REMOVE_FROM_WISHLIST",
+                  payload: props.wishlist,
+                })
+              }
+              className="btn-icon btn-link"
+            >
+              Remove from Wishlist
+            </button>
           </div>
         </div>
       </div>
