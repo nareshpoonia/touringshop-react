@@ -44,6 +44,13 @@ export const cartReducerFn = (state, action) => {
           (item) => item._id !== action.payload
         ),
       };
+    case "REMOVE_FROM_WISHLIST":
+      return {
+        ...state,
+        wishlistArray: state.wishlistArray.filter(
+          (item) => item._id !== action.payload._id
+        ),
+      };
     case "MOVE_TO_CART":
       let newCartArray = state.cartArray;
       if (state.cartArray.length === 0) {
@@ -59,7 +66,6 @@ export const cartReducerFn = (state, action) => {
         } else {
           newCartArray = state.cartArray.push(action.payload);
         }
-        console.log(newCartArray);
       }
 
       return {
