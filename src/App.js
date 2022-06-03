@@ -7,6 +7,7 @@ import Wishlist from "./pages/wishlist";
 import SignUp from "./pages/sign-up";
 import Cart from "./pages/cart";
 import ProductListing from "./pages/product-listing";
+import { RequireAuth } from "./components/requires-auth";
 
 function App() {
   return (
@@ -16,9 +17,23 @@ function App() {
         <Route path="*" element={<Home />}></Route>
         <Route path="/products" element={<ProductListing />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/wishlist" element={<Wishlist />}></Route>
+        <Route
+          path="/wishlist"
+          element={
+            <RequireAuth>
+              <Wishlist />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
+        <Route
+          path="/cart"
+          element={
+            <RequireAuth>
+              <Cart />
+            </RequireAuth>
+          }
+        ></Route>
       </Routes>
     </div>
   );

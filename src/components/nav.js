@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/cart-context";
+import { useAuth } from "../context/auth-context";
 
 function Nav() {
   const { cartState, cartDispatch } = useCartContext();
-  const wishlistQuantities = cartState.wishlistArray.length;
-  const totalQuantities = cartState.cartArray.reduce(
-    (acc, curr) => curr.quantity + acc,
+  const wishlistQuantities = cartState.wishlist.length;
+  const totalQuantities = cartState.cart.reduce(
+    (acc, curr) => curr.qty + acc,
     0
   );
+  const { authToken, logout } = useAuth();
 
   return (
     <nav className="c-navbar flex-center justify-between px-4">
@@ -19,9 +21,13 @@ function Nav() {
         <i className="fa fa-search search-icon" aria-hidden="true"></i>
       </div>
       <ul className="flex-col text-center">
-        <li className="fs-7 mx-8">
-          <Link to="/login">Login</Link>
-        </li>
+        {authToken ? (
+          <button onClick={logout}>Logout</button>
+        ) : (
+          <li className="fs-7 mx-8">
+            <Link to="/login">Login</Link>
+          </li>
+        )}
         <li className="nav-item fs-7 mx-8">
           <Link to="/wishlist">
             <div className="new-badge">

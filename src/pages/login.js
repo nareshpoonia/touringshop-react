@@ -1,6 +1,30 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../context/auth-context";
 
 function Login() {
+  const { login, guestLogin } = useAuth();
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const loginSubmitHandler = (e) => {
+    e.preventDefault();
+    login({
+      email: loginEmail,
+      password: loginPassword,
+    });
+  };
+  const loginEmailHandler = (e) => {
+    setLoginEmail(e.target.value);
+  };
+  const loginPasswordHandler = (e) => {
+    setLoginPassword(e.target.value);
+  };
+
+  const guestLoginHandler = () => {
+    guestLogin();
+  };
+
   return (
     <div>
       <div className="pt-8 flex">
@@ -13,7 +37,7 @@ function Login() {
         </aside>
         <main className="products-display grow flex-center flex-col">
           <div>
-            <form action="" method="get" className="form">
+            <form onSubmit={loginSubmitHandler} className="form mt-8">
               <div className="form">
                 <div className="mb-2">
                   <span>Email</span>
@@ -22,6 +46,8 @@ function Login() {
                   className="w-92"
                   type="email"
                   name="email"
+                  value={loginEmail}
+                  onChange={loginEmailHandler}
                   id="email"
                   required
                 />
@@ -34,6 +60,8 @@ function Login() {
                   className="w-92"
                   type="text"
                   name="password"
+                  value={loginPassword}
+                  onChange={loginPasswordHandler}
                   id="password"
                   required
                 />
@@ -68,6 +96,9 @@ function Login() {
                 <Link to="/signup">Create an account</Link>
               </div>
             </form>
+            <button onClick={guestLoginHandler} className="mt-8 btn-link w-92">
+              Guest Sign In
+            </button>
           </div>
         </main>
       </div>

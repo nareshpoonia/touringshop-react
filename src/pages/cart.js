@@ -1,21 +1,39 @@
 import Cartproducts from "../components/cart-products";
 import { useCartContext } from "../context/cart-context";
+import { useEffect } from "react";
+import { getCart } from "../utilities";
 
 function Cart() {
   const { cartState, cartDispatch } = useCartContext();
-  const totalPrice = cartState.cartArray.reduce(
-    (acc, curr) => curr.price * curr.quantity + acc,
+  const totalPrice = cartState.cart.reduce(
+    (acc, curr) => curr.price * curr.qty + acc,
     0
   );
-  const totalQuantities = cartState.cartArray.reduce(
-    (acc, curr) => curr.quantity + acc,
+  const totalQuantities = cartState.cart.reduce(
+    (acc, curr) => curr.qty + acc,
     0
   );
+
+  useEffect(() => {
+    if (!cartState.cart) {
+      (async () => {
+        try {
+          const cartItems = await getCart(authToken);
+          cartDispatch({
+            type: "ADD_TO_CART",
+            payload: cartItems?.data.cart,
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      })();
+    }
+  }, []);
 
   return (
     <div>
       <div className="products-section flex">
-        {cartState.cartArray.map((product) => {
+        {cartState.cart.map((product) => {
           return <Cartproducts key={product._id} product={product} />;
         })}
         <main className="products-display grow">

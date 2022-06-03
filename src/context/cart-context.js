@@ -9,8 +9,8 @@ const useCartContext = () => useContext(CartContext);
 
 const CartProvider = ({ children }) => {
   const [cartState, cartDispatch] = useReducer(cartReducerFn, {
-    cartArray: [],
-    wishlistArray: [],
+    cart: [],
+    wishlist: [],
   });
 
   return (
