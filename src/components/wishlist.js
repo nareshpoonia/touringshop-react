@@ -4,7 +4,6 @@ import { updateCart, addToCart, removeFromWishlist } from "../utilities";
 import { ACTION_TYPE } from "../utils/const";
 
 export function WishlistProducts(props) {
-  console.log(props);
   const { title, brand, price, _id } = props.wishlist;
   const { cartState, cartDispatch } = useCartContext();
   const { authToken } = useAuth();

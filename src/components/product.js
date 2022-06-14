@@ -43,7 +43,6 @@ function Product(props) {
         (async () => {
           try {
             const updatedCart = await addToCart(authToken, props.product);
-            console.log(updatedCart);
             cartDispatch({
               type: "ADD_TO_CART",
               payload: updatedCart.data.cart,
