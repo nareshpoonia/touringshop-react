@@ -1,8 +1,51 @@
 import { useCartContext } from "../context/cart-context";
+import { useAuth } from "../context/auth-context";
+import { addToWishlist, removeFromCart, updateCart } from "../utilities";
+import { useEffect } from "react";
 
 function Cartproducts(props) {
   const { cartState, cartDispatch } = useCartContext();
-  const { title, brand, _id, quantity, price } = props.product;
+  const { title, brand, _id, qty, price } = props.product;
+  const { authToken } = useAuth();
+
+  async function remove() {
+    try {
+      const updatedCart = await removeFromCart(authToken, _id);
+      cartDispatch({ type: "ADD_TO_CART", payload: updatedCart.data.cart });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function moveToWishlist() {
+    const isProductAlreadyInWishlist = cartState.wishlist.find(
+      (item) => item._id == _id
+    );
+    if (!isProductAlreadyInWishlist) {
+      try {
+        const updatedCart = await removeFromCart(authToken, _id);
+        const updatedWishlist = await addToWishlist(authToken, props.product);
+        cartDispatch({ type: "ADD_TO_CART", payload: updatedCart.data.cart });
+        cartDispatch({
+          type: "UPDATE_WISHLIST",
+          payload: updatedWishlist.data.wishlist,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      remove();
+    }
+  }
+
+  async function update(actionType) {
+    try {
+      const updatedCart = await updateCart(authToken, _id, actionType);
+      cartDispatch({ type: "ADD_TO_CART", payload: updatedCart.data.cart });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
@@ -14,30 +57,11 @@ function Cartproducts(props) {
             <div className="mb-2 fw-5 fs-6">{brand}</div>
             <div>
               <span className="fs-6">Quantity</span>
-              <button
-                onClick={() =>
-                  cartDispatch({
-                    type: "DECREMENT",
-                    payload: _id,
-                  })
-                }
-              >
+              <button disabled={qty === 1} onClick={() => update("decrement")}>
                 <i className="fas fa-minus"></i>
               </button>
-              <input
-                className="w-11"
-                id="number"
-                type="number"
-                value={quantity}
-              />
-              <button
-                onClick={() =>
-                  cartDispatch({
-                    type: "INCREMENT",
-                    payload: _id,
-                  })
-                }
-              >
+              <span className="w-11 fs-6 mx-4">{qty}</span>
+              <button onClick={() => update("increment")}>
                 <i className="fa fa-plus" aria-hidden="true"></i>
               </button>
             </div>
@@ -46,26 +70,8 @@ function Cartproducts(props) {
             </div>
             <div className="card-footer flex-align-center mr-1">
               <div>
-                <button
-                  onClick={() =>
-                    cartDispatch({
-                      type: "REMOVE_FROM_CART",
-                      payload: _id,
-                    })
-                  }
-                  className="btn-icon btn-link"
-                >
-                  Remove from Cart
-                </button>
-                <button
-                  onClick={() =>
-                    cartDispatch({
-                      type: "MOVE_TO_WISHLIST",
-                      payload: props.product,
-                    })
-                  }
-                  className="btn-icon btn-link"
-                >
+                <button onClick={remove}>Remove from Cart</button>
+                <button onClick={moveToWishlist} className="btn-icon btn-link">
                   Move to Wishlist
                 </button>
               </div>
